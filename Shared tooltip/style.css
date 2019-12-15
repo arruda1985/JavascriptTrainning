@@ -1,25 +1,34 @@
-.container {
-  display: flex;
-  flex-flow: column;
-}
-.container-tools {
-  display: flex;
-  padding: 16px 16px 16px 16px;
-}
-.container-messages {
-  padding: 16px 16px 16px 16px;
-}
-.click-box {
-  cursor: pointer;
-}
-
-.item-button {
-  padding-left: 16px;
-}
-
-.item-message {
-  width: 40%;
+/* Add your css styles here */
+.container-tooltip {
+  display: none;
+  flex-direction: column;
+  width: 300px;
+  background-color: #cfe2f3;
   border: 1px solid;
-  padding: 16px;
-  margin-top: 16px;
+  padding: 16px 16px 16px 16px;
+  z-index: 1000;
+  position: absolute;
+}
+
+.title-tooltip {
+  align-self: center;
+  font-weight: bolder;
+}
+
+.content-tooltip {
+  align-self: center;
+  padding-top: 16px;
+  text-align: center;
+}
+
+.container-tooltip-footer {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 16px;
+}
+
+.item-tooltip-btn {
+  border: 1px solid;
+  font-weight: bolder;
+  padding: 5px;
 }
