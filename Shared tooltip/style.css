@@ -1,0 +1,25 @@
+.container {
+  display: flex;
+  flex-flow: column;
+}
+.container-tools {
+  display: flex;
+  padding: 16px 16px 16px 16px;
+}
+.container-messages {
+  padding: 16px 16px 16px 16px;
+}
+.click-box {
+  cursor: pointer;
+}
+
+.item-button {
+  padding-left: 16px;
+}
+
+.item-message {
+  width: 40%;
+  border: 1px solid;
+  padding: 16px;
+  margin-top: 16px;
+}
