@@ -1,0 +1,33 @@
+<!-- Enter your HTML code here -->
+<script src="script.js"></script>
+<link rel="stylesheet" type="text/css" href="style.css">
+
+<div class="container">
+    <div class="container-task task-haeder-item">
+        <div>
+            Task<br>
+            <input id="inputTask" maxlength="200"/>
+        </div>
+        <div class="deadline-input">
+            Deadline <br>
+            <input id="deadlineDate" type="date" placeholder="Deadline">
+        </div>
+        <div class="priority-select">
+            Priority <br>
+            <select id="selectPriority" name="select">
+                <option value="#96d1c7" selected>Low</option>
+                <option value="#f1f1b0">Medium</option>
+                <option value="#ff5d6c">High</option>
+            </select>
+        </div>
+        <div class="item-button">
+            <div class="click-box" onclick="addTask()">Save Task</div>
+        </div>
+    </div>
+    <div class="container-task tasks-list-item">
+        Tasks:
+        <div id="divTasks">
+
+        </div>
+    </div>
+</div>

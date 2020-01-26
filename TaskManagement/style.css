@@ -1,0 +1,95 @@
+.container {
+  display: flex;
+  flex-flow: column;
+  margin: 16px 16px 16px 16px;
+}
+
+.task-haeder-item {
+  border: 1px solid  #f0efef;
+  background-color: #f5eaea;
+  box-shadow: 2px 2px black;
+  border-radius: 7px;
+}
+
+.tasks-list-item{
+  border: 1px solid  #f0efef;
+  background-color: #f5eaea;
+  box-shadow: 2px 2px black;
+  border-radius: 7px;
+  margin-top: 32px;
+}
+
+.container-task {
+  display: flex;
+  padding: 16px 16px 16px 16px;
+}
+
+
+.container-messages {
+  padding: 16px 16px 16px 16px;
+}
+
+.click-box {
+  cursor: pointer;
+  box-shadow: 2px 2px;
+  border: 1px solid;
+  padding: 2px 2px 2px 2px;
+  background-color: #f0efef;
+}
+
+select option {
+  margin: 40px;
+  background: #f0efef;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  font-weight: 400;
+  color: black;
+}
+
+#inputTask {
+  background: #f0efef;
+}
+
+#divTasks {
+  width: 80%;
+  padding-top: 16px;
+}
+
+.item-button {
+  padding-left: 16px;
+}
+
+.action-buttons {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-top: 6px;
+}
+
+.priority-select {
+  padding-left: 16px;
+}
+
+.deadline-input {
+  padding-left: 16px;
+}
+
+.deadline-item {
+  font-size: 12px;
+  float: right;
+  font-weight: 600;
+}
+
+.item-message {
+  width: 100%;
+  border: 1px solid;
+  padding: 16px;
+  margin-top: 16px;
+  box-shadow: 2px 2px black;
+  border-radius: 7px;
+  height: auto;
+}
+
+.box-edit {
+  margin-left: 16px;
+}
