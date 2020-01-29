@@ -1,65 +1,99 @@
 window.onload = function () {
 
-    var gameSnakeBoard = document.getElementById('gameSnake');
-    var ctx = gameSnakeBoard.getContext("2d");
+    let gameSnakeBoard = document.getElementById('gameSnake');
+    let context = gameSnakeBoard.getContext("2d");
     document.addEventListener("keydown", keyPush);
-    setInterval(game, 80);
 
-    const vel = 1;
+    setInterval(snakeGame, 80);
 
-    var vx = vy = 0;
-    var px = 10;
-    var py = 15;
-    var tp = 30;
-    var qp = 20;
-    var ax = ay = 15;
+    const speed = 1;
 
-    var trail = [];
+    let speedX = speedY = 0;
+    let posX = 10;
+    let posY = 15;
+    let squareSize = 16;
+    let squareQuantity = gameSnakeBoard.width / squareSize;
+    let foodX = foodY = randomNumber(1,30);
+    let score = 0;
+    let scoreArray = [];
+    let trail = [];
     tail = 5;
 
-    function game() {
-        px += vx;
-        py += vy;
-        if (px < 0) {
-            px = qp - 1;
+    function randomFood() {
+        foodX = Math.floor(Math.random() * squareQuantity);
+        foodY = Math.floor(Math.random() * squareQuantity);
+    }
+
+    function gameOver() {
+        scoreArray.push(score);
+        alert("Game Over");
+    }
+
+    function reduceBoard() {
+        if (gameSnakeBoard.width > 400) {
+            gameSnakeBoard.width = gameSnakeBoard.width - 113;
+            gameSnakeBoard.height = gameSnakeBoard.height - 113;
+            squareQuantity = gameSnakeBoard.width / squareSize
+            randomFood();
         }
-        if (px > qp - 1) {
-            px = 0;
+    }
+
+    function randomNumber(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function snakeGame() {
+        posX += speedX;
+        posY += speedY;
+        if (posX < 0) {
+            reduceBoard();
+            posX = squareQuantity;
         }
-        if (py < 0) {
-            py = qp - 1;
+        if (posX > squareQuantity) {
+            reduceBoard();
+            posX = 0;
         }
-        if (py > qp - 1) {
-            py = 0;
+        if (posY < 0) {
+            reduceBoard();
+            posY = squareQuantity - 1;
+        }
+        if (posY > squareQuantity) {
+            reduceBoard();
+            posY = 0;
         }
 
-        ctx.fillStyle = "black";
-        ctx.fillRect(0, 0, gameSnakeBoard.width, gameSnakeBoard.height);
+        context.fillStyle = "grey";
+        context.fillRect(0, 0, gameSnakeBoard.width, gameSnakeBoard.height);
 
-        ctx.fillStyle = "red";
-        ctx.fillRect(ax * tp, ay * tp, tp, tp);
+        context.fillStyle = "white";
+        context.fillRect(foodX * squareSize, foodY * squareSize, squareSize, squareSize);
 
-        ctx.fillStyle = "gray";
-        for (var i = 0; i < trail.length; i++) {
-            ctx.fillRect(trail[i].x * tp, trail[i].y * tp, tp - 1, tp - 1);
-            if (trail[i].x == px && trail[i].y == py) {
-                vx = vy = 0;
+        context.fillStyle = "blue";
+
+        for (let i = 0; i < trail.length; i++) {
+            context.fillRect(trail[i].x * squareSize, trail[i].y * squareSize, squareSize - 1, squareSize - 1);
+            if (trail[i].x == posX && trail[i].y == posY) {
+                if (speedX != 0 || speedY != 0) {
+                    gameOver();
+                }
+                speedX = speedY = 0;
                 tail = 5;
+
             }
         }
 
         trail.push({
-            x: px,
-            y: py
+            x: posX,
+            y: posY
         })
         while (trail.length > tail) {
             trail.shift();
         }
 
-        if (ax == px && ay == py) {
+        if (foodX == posX && foodY == posY) {
             tail++;
-            ax = Math.floor(Math.random() * qp);
-            ay = Math.floor(Math.random() * qp);
+            randomFood();
+          
         }
 
     }
@@ -68,20 +102,20 @@ window.onload = function () {
 
         switch (event.keyCode) {
             case 37: // Left
-                vx = -vel;
-                vy = 0;
+                speedX = -speed;
+                speedY = 0;
                 break;
             case 38: // up
-                vx = 0;
-                vy = -vel;
+                speedX = 0;
+                speedY = -speed;
                 break;
             case 39: // right
-                vx = vel;
-                vy = 0;
+                speedX = speed;
+                speedY = 0;
                 break;
             case 40: // down
-                vx = 0;
-                vy = vel;
+                speedX = 0;
+                speedY = speed;
                 break;
             default:
 
