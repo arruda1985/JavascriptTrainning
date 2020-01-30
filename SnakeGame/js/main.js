@@ -1,23 +1,25 @@
 window.onload = function () {
-
-    let gameSnakeBoard = document.getElementById('gameSnake');
-    let context = gameSnakeBoard.getContext("2d");
-    document.addEventListener("keydown", keyPush);
-
-    setInterval(snakeGame, 80);
-
     const speed = 1;
 
     let speedX = speedY = 0;
     let posX = 10;
     let posY = 15;
     let squareSize = 16;
-    let squareQuantity = gameSnakeBoard.width / squareSize;
-    let foodX = foodY = randomNumber(1,30);
+
+    let foodX = foodY = randomNumber(1, 30);
     let score = 0;
     let scoreArray = [];
     let trail = [];
     tail = 5;
+
+    let gameSnakeBoard = document.getElementById('gameSnake');
+    let context = gameSnakeBoard.getContext("2d");
+    document.addEventListener("keydown", keyPush);
+    let squareQuantity = gameSnakeBoard.width / squareSize;
+    setInterval(snakeGame, 80);
+
+    document.getElementById("btnRestart").addEventListener("click", restartGame, false);
+    document.getElementById("bntShowScore").addEventListener("click", showScore, false);
 
     function randomFood() {
         foodX = Math.floor(Math.random() * squareQuantity);
@@ -26,7 +28,9 @@ window.onload = function () {
 
     function gameOver() {
         scoreArray.push(score);
-        alert("Game Over");
+        alert("Game Over! Score: " + score);
+        restartGame();
+
     }
 
     function reduceBoard() {
@@ -92,8 +96,10 @@ window.onload = function () {
 
         if (foodX == posX && foodY == posY) {
             tail++;
+            score++;
+            document.getElementById("score").innerHTML = score;
             randomFood();
-          
+
         }
 
     }
@@ -121,8 +127,38 @@ window.onload = function () {
 
                 break;
         }
-
-
     }
+
+    function restartGame() {
+        speedX = speedY = 0;
+        posX = 10;
+        posY = 15;
+        squareSize = 16;
+        squareQuantity = gameSnakeBoard.width / squareSize;
+        foodX = foodY = randomNumber(1, 30);
+        score = 0;
+        trail = [];
+        tail = 5;
+        gameSnakeBoard.width = 800;
+        gameSnakeBoard.height = 800;
+    }
+
+    function showScore() {
+        let str = "";
+
+        if (scoreArray.length == 0) {
+            str = "No history yet!";
+        }
+
+        let scores = scoreArray.sort();
+        let count = 1;
+
+        for (let i = scores.length - 1; i >= 0; i--) {
+            str += count + " - " + scoreArray[i] + "  ";
+            count++;
+        }
+        alert(str);
+    }
+
 
 }
